@@ -62,7 +62,7 @@ export default function AddForm({ setLetters }) {
 }
 
 const Form = styled.form`
-  background-color: grey;
+  background-color: #1d28c0;
   padding: 12px;
   display: flex;
   flex-direction: column;

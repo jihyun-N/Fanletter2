@@ -1,5 +1,6 @@
 import Tabs from "./Tabs";
 import styled from "styled-components";
+import avoid from "assets/Avoid.png";
 export default function Header({ activeMember, setActiveMember }) {
   return (
     <Container>
@@ -12,11 +13,11 @@ export default function Header({ activeMember, setActiveMember }) {
 const Container = styled.section`
   width: 100%;
   height: 300px;
-  background-color: lightgray;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 24px;
+  background-image: url(${avoid});
 `;
 
 const Title = styled.h1`

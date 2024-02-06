@@ -20,7 +20,7 @@ export default function Tabs({ activeMember, setActiveMember }) {
 }
 
 const TabsWrapper = styled.ul`
-  background-color: gray;
+  background-color: #222094;
   display: flex;
   justify-content: space-between;
   padding: 12px;
@@ -32,13 +32,13 @@ const Tab = styled.li`
   ${(props) => {
     if (props.$activeMember === props.children) {
       return css`
-        background-color: yellow;
+        background-color: pink;
         color: black;
       `;
     }
     return css`
-      background-color: black;
-      color: white;
+      background-color: #fff7f1;
+      color: #08a77f;
     `;
   }}
 

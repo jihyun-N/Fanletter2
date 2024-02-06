@@ -8,19 +8,22 @@ export default function LetterList({ activeMember, letters }) {
 
   return (
     <ListWrapper>
-      {filteredLetters.map((letter) => (
-        <LetterCard letter={letter} />
-      ))}
+      {filteredLetters.length === 0 ? (
+        <p>{activeMember} 팬레터좀 써조~ 힝</p>
+      ) : (
+        filteredLetters.map((letter) => <LetterCard letter={letter} />)
+      )}
     </ListWrapper>
   );
 }
 
 const ListWrapper = styled.ul`
-  background-color: black;
+  background-color: #0cccac;
   display: flex;
   flex-direction: column;
   gap: 20px;
   border-radius: 12px;
   padding: 12px;
   width: 500px;
+  color: black;
 `;

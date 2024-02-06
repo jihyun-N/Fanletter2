@@ -15,7 +15,10 @@ export default function Router() {
           element={<Home letters={letters} setLetters={setLetters} />}
         />
         {/* 패스에서 아무것도 아닐때에는 홈화면 */}
-        <Route path="/detail/:id" element={<Detail letters={letters} />} />
+        <Route
+          path="/detail/:id"
+          element={<Detail letters={letters} setLetters={setLetters} />}
+        />
         {/* 상세페이지 이동하기 */}
         {/* 패스에서 디테일 컴포넌트일때에는 디테일 컴포넌트로, 패스에 파라미터는 id로 설정*/}
         <Route path="*" element={<Navigate replace to="/" />} />

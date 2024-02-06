@@ -27,7 +27,7 @@ const LetterWrapper = styled.li`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  color: white;
+  color: black;
   padding: 12px;
   border: 1px solid white;
   border-radius: 12px;
@@ -51,7 +51,7 @@ const NicknameAndData = styled.div`
   gap: 6px;
 `;
 const Content = styled.p`
-  background-color: gray;
+  background-color: #fff7f1;
   border-radius: 12px;
   padding: 12px;
   margin-left: 62px;

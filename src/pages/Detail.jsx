@@ -1,14 +1,42 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Avatar from "components/common/Avatar";
 import { getFormatTimeDate } from "util/date";
 import Button from "components/common/Button";
+import { useState } from "react";
 
-export default function Detail({ letters }) {
+export default function Detail({ letters, setLetters }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingText, setEditingText] = useState("");
+  const navigate = useNavigate();
   const { id } = useParams();
   const { avatar, nickname, createdAt, name, content } = letters.find(
-    (letters) => letters.id === id
+    (letter) => letter.id === id
   );
+
+  const onDeleteBtn = () => {
+    const answer = window.confirm("레알 삭제~~?");
+    console.log("answer : ", answer);
+    if (!answer) return;
+
+    const newLetters = letters.filter((letter) => letter.id !== id);
+    navigate("/");
+    // 삭제 버튼을 클릭하고 삭제된 후에는 홈화면으로
+    setLetters(newLetters);
+  };
+  const onEditDone = () => {
+    if (!editingText) return alert("그대로여~");
+    const newLetters = letters.map((latter) => {
+      if (latter.id === id) {
+        return { ...latter, content: editingText };
+      }
+      return latter;
+    });
+    setLetters(newLetters);
+    setIsEditing(false);
+    setEditingText("");
+  };
+
   return (
     <Container>
       <Link to="/">
@@ -16,6 +44,7 @@ export default function Detail({ letters }) {
           <Button text="Home" />
         </HomeBtn>
       </Link>
+
       <DetailWrapper>
         <UserInfo>
           <AvatarAndNickname>
@@ -28,11 +57,28 @@ export default function Detail({ letters }) {
           <time>{getFormatTimeDate(createdAt)}</time>
         </UserInfo>
         <ToMember>To : {name}</ToMember>
-        <Content>{content}</Content>
-        <BtnsWrapper>
-          <Button text="수정" />
-          <Button text="삭제" />
-        </BtnsWrapper>
+        {isEditing ? (
+          <>
+            <Textarea
+              autoFocus
+              defaultValue={content}
+              onChange={(e) => setEditingText(e.target.value)}
+            />
+            {/* 오토포커스로 글귀 안에 포커스를 두고,  디폴트벨류로 원래 값이 입력되어있는 상태에서 수정 진행 */}
+            <BtnsWrapper>
+              <Button text="취소" onClick={() => setIsEditing(false)} />
+              <Button text="수정완료" onClick={onEditDone} />
+            </BtnsWrapper>
+          </>
+        ) : (
+          <>
+            <Content>{content}</Content>
+            <BtnsWrapper>
+              <Button text="수정" onClick={() => setIsEditing(true)} />
+              <Button text="삭제" onClick={onDeleteBtn} />
+            </BtnsWrapper>
+          </>
+        )}
       </DetailWrapper>
     </Container>
   );
@@ -53,8 +99,8 @@ const HomeBtn = styled.div`
 `;
 
 const DetailWrapper = styled.section`
-  background-color: grey;
-  color: white;
+  background-color: #0cccac;
+  color: black;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -86,7 +132,7 @@ const Content = styled.p`
   font-size: 24px;
   line-height: 30px;
   padding: 12px;
-  background-color: black;
+  background-color: #fff7f1;
   border-radius: 12px;
   height: 200px;
 `;
@@ -95,4 +141,14 @@ const BtnsWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 12px;
+`;
+
+const Textarea = styled.textarea`
+  font-size: 24px;
+  line-height: 30px;
+  padding: 12px;
+  background-color: black;
+  border-radius: 12px;
+  height: 200px;
+  color: white;
 `;
