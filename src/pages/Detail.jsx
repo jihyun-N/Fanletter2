@@ -147,8 +147,8 @@ const Textarea = styled.textarea`
   font-size: 24px;
   line-height: 30px;
   padding: 12px;
-  background-color: black;
+  background-color: #fff7f1;
   border-radius: 12px;
   height: 200px;
-  color: white;
+  color: black;
 `;
