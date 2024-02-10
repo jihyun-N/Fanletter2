@@ -3,9 +3,11 @@ import styled from "styled-components";
 import Avatar from "components/common/Avatar";
 import { getFormatTimeDate } from "util/date";
 import Button from "components/common/Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { LetterContext } from "context/LetterContext";
 
-export default function Detail({ letters, setLetters }) {
+export default function Detail() {
+  const { letters, setLetters } = useContext(LetterContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editingText, setEditingText] = useState("");
   const navigate = useNavigate();

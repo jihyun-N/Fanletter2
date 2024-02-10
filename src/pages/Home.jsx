@@ -2,16 +2,13 @@ import AddForm from "components/AddForm";
 import Header from "components/Header";
 import LetterList from "components/LetterList";
 import styled from "styled-components";
-import { useState } from "react";
 
-export default function Home({ letters, setLetters }) {
-  const [activeMember, setActiveMember] = useState("양희철 G");
-
+export default function Home() {
   return (
     <Container>
-      <Header activeMember={activeMember} setActiveMember={setActiveMember} />
-      <AddForm setLetters={setLetters} />
-      <LetterList activeMember={activeMember} letters={letters} />
+      <Header />
+      <AddForm />
+      <LetterList />
     </Container>
   );
 }

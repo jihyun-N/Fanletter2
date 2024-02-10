@@ -1,11 +1,11 @@
 import Tabs from "./Tabs";
 import styled from "styled-components";
 import avoid from "assets/Avoid.png";
-export default function Header({ activeMember, setActiveMember }) {
+export default function Header() {
   return (
     <Container>
       <Title>Avoid 팬레터</Title>
-      <Tabs activeMember={activeMember} setActiveMember={setActiveMember} />
+      <Tabs />
     </Container>
   );
 }

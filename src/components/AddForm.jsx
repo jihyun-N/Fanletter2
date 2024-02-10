@@ -1,9 +1,11 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useContext, useState } from "react";
 import { v4 as uuid } from "uuid";
+import styled from "styled-components";
 import Button from "./common/Button";
+import { LetterContext } from "context/LetterContext";
 
-export default function AddForm({ setLetters }) {
+export default function AddForm() {
+  const { setLetters } = useContext(LetterContext);
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
   const [member, setMember] = useState("양희철 G");
