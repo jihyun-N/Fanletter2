@@ -3,11 +3,14 @@ import styled from "styled-components";
 import Avatar from "components/common/Avatar";
 import { getFormatTimeDate } from "util/date";
 import Button from "components/common/Button";
-import { useContext, useState } from "react";
-import { LetterContext } from "context/LetterContext";
+import { useDispatch, useSelector, useState } from "react-redux";
+import { aditLetter, deleteLetter } from "redux/modules/letters";
 
 export default function Detail() {
-  const { letters, setLetters } = useContext(LetterContext);
+  // const { letters, setLetters } = useContext(LetterContext);
+  const dispatch = useDispatch();
+  const letters = useSelector((state) => state.letters);
+
   const [isEditing, setIsEditing] = useState(false);
   const [editingText, setEditingText] = useState("");
   const navigate = useNavigate();
@@ -21,20 +24,23 @@ export default function Detail() {
     console.log("answer : ", answer);
     if (!answer) return;
 
-    const newLetters = letters.filter((letter) => letter.id !== id);
+    dispatch(deleteLetter(id));
+    // const newLetters = letters.filter((letter) => letter.id !== id);
+    // navigate("/");
+    // // 삭제 버튼을 클릭하고 삭제된 후에는 홈화면으로
+    // setLetters(newLetters);
     navigate("/");
-    // 삭제 버튼을 클릭하고 삭제된 후에는 홈화면으로
-    setLetters(newLetters);
   };
   const onEditDone = () => {
     if (!editingText) return alert("그대로여~");
-    const newLetters = letters.map((latter) => {
-      if (latter.id === id) {
-        return { ...latter, content: editingText };
-      }
-      return latter;
-    });
-    setLetters(newLetters);
+    dispatch(aditLetter(id, editingText));
+    // const newLetters = letters.map((latter) => {
+    //   if (latter.id === id) {
+    //     return { ...latter, content: editingText };
+    //   }
+    //   return latter;
+    // });
+    // setLetters(newLetters);
     setIsEditing(false);
     setEditingText("");
   };
