@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setMember } from "redux/modules/member";
+import { setMember } from "store/modules/member";
+
 import styled, { css } from "styled-components";
 
 export default function Tabs() {
@@ -12,7 +13,7 @@ export default function Tabs() {
     // setActiveMember(e.target.textContent);
     dispatch(setMember(e.target.value));
   };
-  console.log(onActiveMember);
+  console.log("뭐야", onActiveMember);
   return (
     <TabsWrapper onClick={onActiveMember}>
       <Tab $activeMember={activeMember}>양희철 G</Tab>

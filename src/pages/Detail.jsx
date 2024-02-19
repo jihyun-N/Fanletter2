@@ -3,8 +3,10 @@ import styled from "styled-components";
 import Avatar from "components/common/Avatar";
 import { getFormatTimeDate } from "util/date";
 import Button from "components/common/Button";
-import { useDispatch, useSelector, useState } from "react-redux";
-import { aditLetter, deleteLetter } from "redux/modules/letters";
+import { useDispatch, useSelector } from "react-redux";
+
+import { useState } from "react";
+import { aditLetter, deleteLetter } from "store/modules/letters";
 
 export default function Detail() {
   // const { letters, setLetters } = useContext(LetterContext);
