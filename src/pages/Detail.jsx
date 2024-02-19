@@ -35,7 +35,7 @@ export default function Detail() {
   };
   const onEditDone = () => {
     if (!editingText) return alert("그대로여~");
-    dispatch(aditLetter(id, editingText));
+    dispatch(aditLetter({ id, editingText }));
     // const newLetters = letters.map((latter) => {
     //   if (latter.id === id) {
     //     return { ...latter, content: editingText };

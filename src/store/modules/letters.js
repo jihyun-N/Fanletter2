@@ -28,6 +28,7 @@ const letters = (state = initialState, action) => {
       return state.filter((letter) => {
         return letter.id !== letterId;
       });
+
     case EDIT_LETTER:
       const { id, editingText } = action.payload;
       // 오른쪽꺼에서 꺼내온다.

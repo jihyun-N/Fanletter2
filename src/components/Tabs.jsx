@@ -11,7 +11,7 @@ export default function Tabs() {
     if (e.target === e.currentTarget) return;
 
     // setActiveMember(e.target.textContent);
-    dispatch(setMember(e.target.value));
+    dispatch(setMember(e.target.textContent));
   };
   console.log("뭐야", onActiveMember);
   return (
