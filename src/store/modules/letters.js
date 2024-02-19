@@ -1,35 +1,25 @@
+import { createSlice } from "@reduxjs/toolkit";
 import fakeData from "fakeData.json";
-// 팬레터 추가
-const ADD_LETTER = "letter/ADD_LETTER";
-// 팬레터 삭제
-const DELETE_LETTER = "letter/DELETE_LETTER";
-// 팬레터 수정
-const EDIT_LETTER = "letter/EDIT_LETTER";
-
-export const addLetter = (payload) => {
-  return { type: ADD_LETTER, payload };
-};
-export const deleteLetter = (payload) => {
-  return { type: DELETE_LETTER, payload };
-};
-export const aditLetter = (payload) => {
-  return { type: EDIT_LETTER, payload };
-};
 
 const initialState = fakeData;
 
-const letters = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_LETTER:
+const lettersSlice = createSlice({
+  name: "letters",
+  initialState,
+  reducers: {
+    addLetter: (state, action) => {
       const newLetter = action.payload;
       return [newLetter, ...state];
-    case DELETE_LETTER:
+    },
+
+    deleteLetter: (state, action) => {
       const letterId = action.payload;
       return state.filter((letter) => {
         return letter.id !== letterId;
       });
+    },
 
-    case EDIT_LETTER:
+    aditLetter: (state, action) => {
       const { id, editingText } = action.payload;
       // 오른쪽꺼에서 꺼내온다.
       return state.map((letter) => {
@@ -38,9 +28,9 @@ const letters = (state = initialState, action) => {
         }
         return letter;
       });
-    default:
-      return state;
-  }
-};
+    },
+  },
+});
 
-export default letters;
+export const { addLetter, deleteLetter, aditLetter } = lettersSlice.actions;
+export default lettersSlice.reducer;
